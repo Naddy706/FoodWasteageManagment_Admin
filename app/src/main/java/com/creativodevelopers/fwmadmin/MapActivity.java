@@ -63,6 +63,7 @@ public class MapActivity extends AppCompatActivity implements PermissionsListene
     private PermissionsManager permissionsManager;
     private ImageView hoveringMarker;
     private Layer droppedMarkerLayer;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
