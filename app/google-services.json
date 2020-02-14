@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "860163306832",
+    "firebase_url": "https://foodwastagemanagment.firebaseio.com",
+    "project_id": "foodwastagemanagment",
+    "storage_bucket": "foodwastagemanagment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860163306832:android:fb53b37c159ff4e814e855",
+        "android_client_info": {
+          "package_name": "com.creativodevelopers.foodwastagemanagment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860163306832-t7tsebufthvtrbf93uetjk3a7tlifjoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgguuTNORB684QPdxrzTADd2MG66P5Lbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860163306832-t7tsebufthvtrbf93uetjk3a7tlifjoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860163306832:android:1081acbdd0a349c614e855",
+        "android_client_info": {
+          "package_name": "com.creativodevelopers.fwmadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860163306832-t7tsebufthvtrbf93uetjk3a7tlifjoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgguuTNORB684QPdxrzTADd2MG66P5Lbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860163306832-t7tsebufthvtrbf93uetjk3a7tlifjoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

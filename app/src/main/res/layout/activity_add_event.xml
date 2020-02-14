@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/backgroundlogin"
+    tools:context=".AddEventActivity">
+
+<LinearLayout
+
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="90dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="17dp"
+            android:background="@drawable/inputs"
+            android:hint="Title..."
+            android:paddingLeft="28dp"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:textColor="@color/mainpg"
+            android:textColorHint="@color/red">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/title"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="17dp"
+            android:background="@drawable/inputs"
+            android:hint="Description..."
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:minLines="6"
+            android:paddingLeft="28dp"
+            android:textAlignment="center"
+            android:textColorHint="@color/red"
+            android:textColor="@color/mainpg">
+
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/in_date"
+                android:layout_width="200dp"
+                android:layout_height="55dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/description"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="17dp"
+                android:background="@drawable/inputs"
+                android:hint="Select Date..."
+                android:paddingLeft="28dp"
+                android:textAlignment="center"
+                android:textColorHint="@color/red"
+                android:textColor="@color/mainpg"
+                 />
+
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+                android:text="SELECT DATE"
+                android:id="@+id/btn_date"
+                android:layout_marginTop="20dp"
+                android:layout_alignBottom="@+id/in_date"
+                android:layout_toRightOf="@+id/in_date"
+                android:layout_toEndOf="@+id/in_date"
+                android:background="@drawable/btn_bac"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="55dp"
+                android:layout_alignParentStart="true"
+                android:id="@+id/in_time"
+                android:layout_below="@+id/in_date"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="17dp"
+                android:background="@drawable/inputs"
+                android:hint="Select Time..."
+                android:paddingLeft="28dp"
+                android:textAlignment="center"
+                android:textColorHint="@color/red"
+                android:textColor="@color/mainpg"
+                />
+
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+                android:text="SELECT TIME"
+                android:id="@+id/btn_time"
+                android:layout_below="@+id/btn_date"
+                android:layout_marginTop="20dp"
+                android:layout_alignBottom="@+id/in_date"
+                android:layout_toRightOf="@+id/in_date"
+                android:layout_toEndOf="@+id/in_date"
+                android:background="@drawable/btn_bac"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/uploadPic"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/in_time"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/btn_bac"
+            android:layout_marginTop="45dp"
+            android:text="Upload Event Banner"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp"
+            android:textStyle="bold">
+
+        </Button>
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="17dp"
+            android:background="@drawable/inputs"
+            android:hint="Address..."
+            android:paddingLeft="28dp"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:textColor="@color/mainpg"
+            android:textColorHint="@color/red">
+
+        </EditText>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/uploadPic"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/btn_bac"
+        android:layout_marginTop="45dp"
+        android:text="Save"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textSize="29sp"
+        android:textStyle="bold">
+
+    </Button>
+
+
+
+
+</LinearLayout>
+
+</ScrollView>

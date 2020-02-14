@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/AddEvent"
+        android:icon="@drawable/ic_more_vert_black_24dp"
+        android:title="Add Event"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/Setting"
+        android:title="Setting"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        app:showAsAction="never"/>
+
+
+
+</menu>
