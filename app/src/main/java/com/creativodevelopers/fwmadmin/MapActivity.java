@@ -118,6 +118,7 @@ public class MapActivity extends AppCompatActivity implements PermissionsListene
                             selectLocationButton.setBackgroundColor(ContextCompat.getColor(MapActivity.this, R.color.colorAccent));
                             selectLocationButton.setText("Cancel");
 
+
 // Show the SymbolLayer icon to represent the selected map location
                             if (style.getLayer(DROPPED_MARKER_LAYER_ID) != null) {
                                 GeoJsonSource source = style.getSourceAs("dropped-marker-source-id");
