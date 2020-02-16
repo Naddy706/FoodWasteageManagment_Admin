@@ -1,159 +1,113 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/cardView"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginBottom="@dimen/activity_vertical_margin"
+android:clickable="true"
+android:focusable="true"
+android:foreground="?android:attr/selectableItemBackground"
+app:cardCornerRadius="@dimen/activity_vertical_margin"
+app:cardElevation="@dimen/activity_vertical_margin">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/Eventimage"
+        android:layout_width="280px"
+        android:layout_height="280px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Title"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Description" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Location" />
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:src="@drawable/flag_puerto_rico"
-                android:id="@+id/Eventimage"
-                android:layout_width="match_parent"
-                android:layout_height="300px">
-
-            </ImageView>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Title :"
-                    android:textSize="25sp"
-                    >
-                </TextView>
-
-                <TextView
-                    android:layout_width="200sp"
-                    android:layout_height="40sp"
-                    android:id="@+id/title"
-                    android:text="Title"
-                    android:textSize="15sp"
-                    >
-                </TextView>
-            </LinearLayout>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Date" />
 
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Description:"
-                    android:textSize="25sp"
-                    >
-                </TextView>
-
-                <TextView
-                    android:layout_width="200sp"
-                    android:layout_height="40sp"
-                    android:id="@+id/description"
-                    android:text="description"
-                    android:textSize="15sp"
-                    >
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Location :"
-                    android:textSize="25sp"
-                    >
-                </TextView>
-
-                <TextView
-                    android:layout_width="200sp"
-                    android:layout_height="40sp"
-                    android:id="@+id/location"
-                    android:text="location"
-                    android:textSize="15sp"
-                    >
-                </TextView>
-
-            </LinearLayout>
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Time" />
 
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/time">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date                 "
-                    android:textSize="25sp"
-                    >
-                </TextView>
-
-                <TextView
-                    android:layout_width="200sp"
-                    android:layout_height="40sp"
-                    android:text="Time"
-                    android:textSize="25sp"
-                    >
-                </TextView>
-
-            </LinearLayout>
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:text="Update"
+        android:id="@+id/update"
+        android:layout_below="@+id/btn_date"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/btn_bac"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp">
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date                 "
-                    android:textSize="25sp"
-                    >
-                </TextView>
-
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="200sp"
-                    android:layout_height="40sp"
-                    android:text="Time"
-                    android:textSize="25sp"
-                    >
-                </TextView>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:text="Delete"
+        android:id="@+id/delete"
+        android:layout_below="@+id/btn_date"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/btn_bac"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
+
+
+</RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

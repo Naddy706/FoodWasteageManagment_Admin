@@ -7,15 +7,24 @@
     android:background="@drawable/backgroundlogin"
     tools:context=".AddEventActivity">
 
+
+
 <LinearLayout
-
-
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     >
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <include
+            layout="@layout/app_bar_layout"
+            android:id="@+id/main_page_toolbar"
+            >
+        </include>
+    </com.google.android.material.appbar.AppBarLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="550dp"

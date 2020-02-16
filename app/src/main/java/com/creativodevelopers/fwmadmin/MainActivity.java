@@ -1,6 +1,7 @@
 package com.creativodevelopers.fwmadmin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 //    private TabItem tab1,tab2,tab3;
     PagerAdapter pagerAdapter;
     Button btn;
-
+    private Toolbar mToolbar;
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         myTabLayout=(TabLayout) findViewById(R.id.tablayout);
         myTabLayout.setupWithViewPager(myViewPager);
 
+        mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Show Event");
 
     }
 
@@ -79,20 +83,13 @@ public class MainActivity extends AppCompatActivity {
                 if(item.getItemId() == R.id.AddEvent){
                     Intent i =new Intent(MainActivity.this,AddEventActivity.class);
                     startActivity(i);
-                    finish();
                 }
                 else if(item.getItemId() == R.id.Setting){
                     Toast.makeText(this, "Map", Toast.LENGTH_SHORT).show();
                     Intent i =new Intent(MainActivity.this,MapActivity.class);
                     startActivity(i);
-                    finish();
                 }
-                else if(item.getItemId() == R.id.logout){
 
-
-//                mAuth.signOut();
-//                SendUserToLoginActivity();
-                }
                 return true;
 
     }

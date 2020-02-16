@@ -3,6 +3,7 @@ package com.creativodevelopers.fwmadmin;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -44,6 +45,7 @@ public class AddEventActivity extends AppCompatActivity {
     private StorageTask uploadTask;
     private Uri fileUri;
     String myUrl="";
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,12 @@ public class AddEventActivity extends AppCompatActivity {
         btnsave=findViewById(R.id.save);
         mAuth=FirebaseAuth.getInstance();
         databaseReference=FirebaseDatabase.getInstance().getReference();
+
+        mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Add Event");
 
 
 
@@ -156,6 +164,11 @@ public class AddEventActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable final Intent data) {
