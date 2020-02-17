@@ -1,6 +1,9 @@
 package com.creativodevelopers.fwmadmin;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,11 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +27,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,13 +35,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 
 public class ShowEventFragment extends Fragment {
 
     private View showEvent;
     private RecyclerView showEventList;
 
-    private DatabaseReference eventRef;
+    private DatabaseReference eventRef,foodref;
 
     public ShowEventFragment() {
         // Required empty public constructor
@@ -50,7 +59,7 @@ public class ShowEventFragment extends Fragment {
 
         showEvent=inflater.inflate(R.layout.fragment_show_event, container, false);
         eventRef= FirebaseDatabase.getInstance().getReference().child("Event");
-
+        foodref= FirebaseDatabase.getInstance().getReference().child("Food");
 
         showEventList =  showEvent.findViewById(R.id.event_list);
         showEventList.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -111,6 +120,40 @@ public class ShowEventFragment extends Fragment {
                                         DeleteEvent(eventId);
                                     }
                                 });
+                                holder.Food.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        AddFoodDailog(eventId);
+                                    }
+                                });
+
+
+//                                foodref.addValueEventListener(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                                        for(DataSnapshot data:dataSnapshot.getChildren()){
+//
+//                                            String key=data.child("eventid").getValue().toString();
+//
+//
+//                                            if(key == eventId){
+//                                            }
+//                                            else {
+//
+//                                            }
+//
+//                                        }
+//
+//
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(DatabaseError databaseError) {
+//
+//                                    }
+//                                });
+
 
                             }
                             else {
@@ -125,6 +168,47 @@ public class ShowEventFragment extends Fragment {
                                 holder.Description.setText(des);
                                 holder.Location.setText(l);
                                 holder.Date.setText(da);
+                                holder.Delete.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        DeleteEvent(eventId);
+                                    }
+                                });
+
+                                holder.Food.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        AddFoodDailog(eventId);
+                                    }
+                                });
+//                                foodref.addValueEventListener(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                                        for(DataSnapshot data:dataSnapshot.getChildren()){
+//
+//                                            String key=data.child("eventid").getValue().toString();
+//
+//
+//                                            if(key == eventId){
+//
+//                                            }
+//                                            else {
+//
+//
+//                                            }
+//
+//                                        }
+//
+//
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(DatabaseError databaseError) {
+//
+//                                    }
+//                                });
+
 
                             }
 
@@ -155,6 +239,88 @@ public class ShowEventFragment extends Fragment {
 
         showEventList.setAdapter(adapter);
         adapter.startListening();
+    }
+
+    private void AddFoodDailog(final String eventId) {
+
+        Context context = getActivity();
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setTitle("Food Type Like Veg,NonVeg,Continental and etc...");
+
+        final EditText FoodName=new EditText(getActivity());
+        FoodName.setHint("e.g Food Type");
+        layout.addView(FoodName);
+        alertDialogBuilder.setView(layout);
+
+
+        alertDialogBuilder.setPositiveButton(" Add ", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String Foodname=FoodName.getText().toString();
+                if(TextUtils.isEmpty(Foodname)){
+                    Toast.makeText(getActivity(), "Please Write Food Type", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    AddFood(eventId,Foodname);
+                }
+            }
+        });
+        alertDialogBuilder.setNegativeButton(" Cancel ", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        }).show();
+
+
+    }
+
+    private void AddFood(String eventId, String foodName ) {
+
+
+
+
+        HashMap<String,String> map=new HashMap<>();
+        map.put("eventid",eventId);
+        map.put("foodname",foodName);
+        map.put("Votes","0");
+        foodref.push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(getActivity(), "Food Preference Added", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getActivity(), "Failed Adding food Preference", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        //
+//        HashMap<String,String> map=new HashMap<>();
+//        map.put("eventid",eventId);
+//        map.put("foodname1",foodName1);
+//        map.put("foodname2",foodName2);
+//        map.put("foodname3",foodName3);
+//        map.put("foodname4",foodName4);
+//        map.put("foodname5",foodName5);
+//
+//        foodref.push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//
+//                if(task.isSuccessful())
+//                {
+//                    Toast.makeText(getActivity(), "Food Preference Added", Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    Toast.makeText(getActivity(), "Failed Adding food Preference", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+
     }
 
     private void DeleteEvent(String eventId) {
@@ -188,7 +354,7 @@ public class ShowEventFragment extends Fragment {
     public static class EventViewHolder extends RecyclerView.ViewHolder {
 
         TextView Title, Description,Date , Time , Location;
-        Button Update,Delete;
+        Button Update,Delete,Food;
         ImageView EventImage;
 
         public EventViewHolder(@NonNull View itemView) {
@@ -202,6 +368,7 @@ public class ShowEventFragment extends Fragment {
             EventImage= itemView.findViewById(R.id.Eventimage);
             Update=itemView.findViewById(R.id.update);
             Delete=itemView.findViewById(R.id.delete);
+            Food=itemView.findViewById(R.id.foodSuggestions);
         }
     }
 

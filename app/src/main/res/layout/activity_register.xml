@@ -19,9 +19,9 @@
         </ImageView>
 
 
-
-
     </LinearLayout>
+
+
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"

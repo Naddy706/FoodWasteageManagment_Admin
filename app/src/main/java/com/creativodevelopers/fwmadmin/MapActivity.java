@@ -1,5 +1,6 @@
 package com.creativodevelopers.fwmadmin;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -59,7 +60,7 @@ public class MapActivity extends AppCompatActivity implements PermissionsListene
     private static final String DROPPED_MARKER_LAYER_ID = "DROPPED_MARKER_LAYER_ID";
     private MapView mapView;
     private MapboxMap mapboxMap;
-    private Button selectLocationButton;
+    private Button selectLocationButton,confirmlocation;
     private PermissionsManager permissionsManager;
     private ImageView hoveringMarker;
     private Layer droppedMarkerLayer;
@@ -73,7 +74,7 @@ public class MapActivity extends AppCompatActivity implements PermissionsListene
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-
+        confirmlocation=findViewById(R.id.confirm);
     }
 
 
@@ -268,6 +269,18 @@ public class MapActivity extends AppCompatActivity implements PermissionsListene
                                     if (style.getLayer(DROPPED_MARKER_LAYER_ID) != null) {
 
                                         Toast.makeText(MapActivity.this,""+feature.placeName(),Toast.LENGTH_LONG).show();
+                                        confirmlocation.setVisibility(View.VISIBLE);
+                                        confirmlocation.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+
+                                                Intent intent = new Intent(MapActivity.this, AddEventActivity.class);
+                                                intent.putExtra("location", " "+feature.placeName());
+                                                startActivity(intent);
+                                            }
+                                        });
+
+
                                     }
                                 }
                             });

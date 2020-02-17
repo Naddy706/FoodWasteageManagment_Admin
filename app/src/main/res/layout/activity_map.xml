@@ -11,6 +11,12 @@
         android:layout_height="match_parent"
         mapbox:mapbox_cameraZoom="15"/>
 
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="500dp"
+    android:orientation="vertical">
     <Button
         android:id="@+id/select_location_button"
         android:layout_width="fill_parent"
@@ -20,5 +26,17 @@
         android:background="@color/colorPrimary"
         android:text="Select a location"
         android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="8dp"
+        android:background="@color/colorPrimary"
+        android:text="Confirm Location"
+        android:textColor="@android:color/white"
+        android:visibility="invisible"/>
+</LinearLayout>
 
 </FrameLayout>

@@ -31,6 +31,48 @@
         android:layout_marginTop="90dp"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="55dp"
+                android:layout_alignParentStart="true"
+                android:id="@+id/address"
+                android:layout_below="@+id/uploadPic"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="17dp"
+                android:background="@drawable/inputs"
+                android:hint="Address..."
+                android:paddingLeft="28dp"
+                android:textAlignment="center"
+                android:textColorHint="@color/red"
+                android:textColor="@color/mainpg"
+                />
+
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+                android:text="SELECT ADDRESS"
+                android:id="@+id/btn_map"
+                android:layout_below="@+id/btn_date"
+                android:layout_marginTop="20dp"
+                android:layout_alignBottom="@+id/address"
+                android:layout_toRightOf="@+id/address"
+                android:layout_toEndOf="@+id/address"
+                android:background="@drawable/btn_bac"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
         <EditText
             android:id="@+id/title"
             android:layout_width="match_parent"
@@ -176,23 +218,10 @@
 
         </Button>
 
-        <EditText
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="17dp"
-            android:background="@drawable/inputs"
-            android:hint="Address..."
-            android:paddingLeft="28dp"
-            android:inputType="textEmailAddress"
-            android:textAlignment="center"
-            android:textColor="@color/mainpg"
-            android:textColorHint="@color/red">
 
-        </EditText>
+
+
+
     </LinearLayout>
 
 

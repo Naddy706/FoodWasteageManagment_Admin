@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class AddEventActivity extends AppCompatActivity {
 
-    Button btnDatePicker, btnTimePicker, btnupload,btnsave;
+    Button btnDatePicker, btnTimePicker, btnupload,btnsave,btnmap;
     EditText txtDate, txtTime,title,description,Address;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private FirebaseAuth mAuth;
@@ -46,6 +46,7 @@ public class AddEventActivity extends AppCompatActivity {
     private Uri fileUri;
     String myUrl="";
     private Toolbar mToolbar;
+    String data="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +64,15 @@ public class AddEventActivity extends AppCompatActivity {
         btnsave=findViewById(R.id.save);
         mAuth=FirebaseAuth.getInstance();
         databaseReference=FirebaseDatabase.getInstance().getReference();
-
+        btnmap=findViewById(R.id.btn_map);
         mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Add Event");
 
+         data = getIntent().getStringExtra("location");
+         Address.setText(data);
 
 
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +92,13 @@ public class AddEventActivity extends AppCompatActivity {
             }
         });
 
+        btnmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(AddEventActivity.this,MapActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnupload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +120,8 @@ public class AddEventActivity extends AppCompatActivity {
                 String dt=txtDate.getText().toString().trim();
                 String tt=txtTime.getText().toString().trim();
                 String lo=Address.getText().toString().trim();
+
+
 
 
                 if (TextUtils.isEmpty(t)) {
@@ -141,7 +153,7 @@ public class AddEventActivity extends AppCompatActivity {
                 map.put("description", d);
                 map.put("date", dt);
                 map.put("time", tt);
-                map.put("location", lo);
+                map.put("location", data);
 
 
                 databaseReference.child("Event").push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {

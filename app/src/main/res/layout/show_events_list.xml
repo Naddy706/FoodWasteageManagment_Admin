@@ -67,11 +67,36 @@ app:cardElevation="@dimen/activity_vertical_margin">
         android:layout_toRightOf="@+id/Eventimage"
         android:text="Time" />
 
+    <LinearLayout
+        android:id="@+id/foodPreference"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Add Food Preference"
+            android:id="@+id/foodSuggestions"
+            android:layout_below="@+id/btn_date"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/btn_bac"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+
+    </LinearLayout>
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/time">
+    android:layout_centerVertical="true"
+    android:layout_below="@+id/foodPreference">
 
     <Button
         android:layout_width="140dp"
@@ -79,7 +104,7 @@ app:cardElevation="@dimen/activity_vertical_margin">
         android:text="Update"
         android:id="@+id/update"
         android:layout_below="@+id/btn_date"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/btn_bac"
         android:textAlignment="center"
@@ -95,7 +120,7 @@ app:cardElevation="@dimen/activity_vertical_margin">
         android:text="Delete"
         android:id="@+id/delete"
         android:layout_below="@+id/btn_date"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/btn_bac"
         android:textAlignment="center"
