@@ -1,6 +1,7 @@
 package com.creativodevelopers.fwmadmin;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,11 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,7 +75,7 @@ public class ShowEventFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull final EventViewHolder holder, int position, @NonNull Event model) {
 
-                String eventId=getRef(position).getKey();
+                final String eventId=getRef(position).getKey();
 
                 eventRef.child(eventId).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -80,12 +85,12 @@ public class ShowEventFragment extends Fragment {
 
                             if(dataSnapshot.hasChild("image")){
 
-                                String eventImage=dataSnapshot.child("image").getValue().toString();
-                                String tit=dataSnapshot.child("title").getValue().toString();
-                                String des=dataSnapshot.child("description").getValue().toString();
-                                String da=dataSnapshot.child("date").getValue().toString();
-                                String ti=dataSnapshot.child("time").getValue().toString();
-                                String l=dataSnapshot.child("location").getValue().toString();
+                                final String eventImage=dataSnapshot.child("image").getValue().toString();
+                                final String tit=dataSnapshot.child("title").getValue().toString();
+                                final String des=dataSnapshot.child("description").getValue().toString();
+                                final String da=dataSnapshot.child("date").getValue().toString();
+                                final String ti=dataSnapshot.child("time").getValue().toString();
+                                final String l=dataSnapshot.child("location").getValue().toString();
 
                                 holder.Title.setText(tit);
                                 holder.Description.setText(des);
@@ -93,6 +98,19 @@ public class ShowEventFragment extends Fragment {
                                 holder.Date.setText(da);
                                 holder.Time.setText(ti);
                                 Picasso.get().load(eventImage).placeholder(R.drawable.eventimage).into(holder.EventImage);
+                                holder.Update.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        UpdateEvent(eventId,eventImage,tit,des,da,ti,l);
+                                    }
+                                });
+
+                                holder.Delete.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        DeleteEvent(eventId);
+                                    }
+                                });
 
                             }
                             else {
@@ -139,10 +157,38 @@ public class ShowEventFragment extends Fragment {
         adapter.startListening();
     }
 
+    private void DeleteEvent(String eventId) {
+
+        eventRef.child(eventId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful()){
+                    Toast.makeText(getActivity(), "Event Deleted", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void UpdateEvent(String eventId, String eventImage, String tit, String des, String da, String ti, String l) {
+        Intent updateEvent= new Intent(getActivity(),UpdateEventActivity.class);
+        updateEvent.putExtra("id",eventId);
+        updateEvent.putExtra("eventImage",eventImage);
+        updateEvent.putExtra("title",tit);
+        updateEvent.putExtra("description",des);
+        updateEvent.putExtra("date",da);
+        updateEvent.putExtra("time",ti);
+        updateEvent.putExtra("location",l);
+        startActivity(updateEvent);
+    }
+
     public static class EventViewHolder extends RecyclerView.ViewHolder {
 
         TextView Title, Description,Date , Time , Location;
-
+        Button Update,Delete;
         ImageView EventImage;
 
         public EventViewHolder(@NonNull View itemView) {
@@ -154,7 +200,8 @@ public class ShowEventFragment extends Fragment {
             Time=itemView.findViewById(R.id.time);
             Location=itemView.findViewById(R.id.location);
             EventImage= itemView.findViewById(R.id.Eventimage);
-
+            Update=itemView.findViewById(R.id.update);
+            Delete=itemView.findViewById(R.id.delete);
         }
     }
 
