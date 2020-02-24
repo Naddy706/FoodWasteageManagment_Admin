@@ -86,7 +86,7 @@ public class MapActivity extends AppCompatActivity implements PermissionsListene
                 enableLocationPlugin(style);
 
 // Toast instructing user to tap on the mapboxMap
-                Toast.makeText(MapActivity.this, "Select your Location", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MapActivity.this, "Select your Location", Toast.LENGTH_SHORT).show();
 
 // When user is still picking a location, we hover a marker above the mapboxMap in the center.
 // This is done by using an image view with the default marker found in the SDK. You can
