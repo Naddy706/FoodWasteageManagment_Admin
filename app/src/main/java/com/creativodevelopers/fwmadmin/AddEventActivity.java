@@ -47,6 +47,8 @@ public class AddEventActivity extends AppCompatActivity {
     String myUrl="";
     private Toolbar mToolbar;
     String data="";
+    String lat="";
+    String log="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,9 @@ public class AddEventActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Event");
 
          data = getIntent().getStringExtra("location");
+        lat = getIntent().getStringExtra("lat");
+        log = getIntent().getStringExtra("long");
+        Toast.makeText(this, "Log"+ log, Toast.LENGTH_SHORT).show();
          Address.setText(data);
 
 
@@ -154,7 +159,8 @@ public class AddEventActivity extends AppCompatActivity {
                 map.put("date", dt);
                 map.put("time", tt);
                 map.put("location", data);
-
+                map.put("lat",lat);
+                map.put("long",log);
 
                 databaseReference.child("Event").push().setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

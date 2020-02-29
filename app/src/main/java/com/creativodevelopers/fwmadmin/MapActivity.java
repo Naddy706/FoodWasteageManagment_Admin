@@ -2,6 +2,8 @@ package com.creativodevelopers.fwmadmin;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -34,7 +36,11 @@ import com.mapbox.mapboxsdk.style.layers.Layer;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
+import java.io.IOException;
+import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
@@ -255,30 +261,52 @@ public class MapActivity extends AppCompatActivity implements PermissionsListene
 
             client.enqueueCall(new Callback<GeocodingResponse>() {
                 @Override
-                public void onResponse(Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
+                public void onResponse(Call<GeocodingResponse> call, final Response<GeocodingResponse> response) {
 
                     if (response.body() != null) {
                         List<CarmenFeature> results = response.body().features();
                         if (results.size() > 0) {
                             final CarmenFeature feature = results.get(0);
 
-// If the geocoder returns a result, we take the first in the list and show a Toast with the place name.
                             mapboxMap.getStyle(new Style.OnStyleLoaded() {
                                 @Override
                                 public void onStyleLoaded(@NonNull Style style) {
                                     if (style.getLayer(DROPPED_MARKER_LAYER_ID) != null) {
+                                        try {
 
-                                        Toast.makeText(MapActivity.this,""+feature.placeName(),Toast.LENGTH_LONG).show();
-                                        confirmlocation.setVisibility(View.VISIBLE);
-                                        confirmlocation.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View view) {
 
-                                                Intent intent = new Intent(MapActivity.this, AddEventActivity.class);
-                                                intent.putExtra("location", " "+feature.placeName());
-                                                startActivity(intent);
+                                            String loc=feature.placeName();
+                                            Geocoder gc=new Geocoder(getApplicationContext());
+
+                                            List<Address> address=gc.getFromLocationName(loc,5);
+                                            List<LatLng> ll =new ArrayList<LatLng>(address.size());
+                                            for (final Address a:address)
+                                            {
+                                             if(a.hasLatitude() && a.hasLongitude())
+                                             {
+                                                 ll.add(new LatLng(a.getLatitude(),a.getLongitude()));
+                                                 Toast.makeText(MapActivity.this, "Lat: "+a.getLatitude()+" , Long: "+a.getLongitude(), Toast.LENGTH_SHORT).show();
+
+
+                                                 Toast.makeText(MapActivity.this,""+feature.placeName(),Toast.LENGTH_LONG).show();
+                                                 confirmlocation.setVisibility(View.VISIBLE);
+                                                 confirmlocation.setOnClickListener(new View.OnClickListener() {
+                                                     @Override
+                                                     public void onClick(View view) {
+                                                 Intent intent = new Intent(MapActivity.this, AddEventActivity.class);
+                                                 intent.putExtra("location", " "+feature.placeName());
+                                                 intent.putExtra("lat", " "+a.getLatitude());
+                                                 intent.putExtra("long", " "+a.getLongitude());
+                                                 startActivity(intent);
+                                                     }
+                                                 });
+                                             }
                                             }
-                                        });
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+
+
 
 
                                     }
@@ -287,8 +315,9 @@ public class MapActivity extends AppCompatActivity implements PermissionsListene
 
                         } else {
 
-
                             Toast.makeText(getApplicationContext(),"Not found ",Toast.LENGTH_LONG).show();
+
+
                         }
                     }
                 }

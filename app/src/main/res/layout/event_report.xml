@@ -1,0 +1,101 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/cardView"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginBottom="@dimen/activity_vertical_margin"
+android:clickable="true"
+android:focusable="true"
+android:foreground="?android:attr/selectableItemBackground"
+app:cardCornerRadius="@dimen/activity_vertical_margin"
+app:cardElevation="@dimen/activity_vertical_margin">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/Eventimage"
+        android:layout_width="280px"
+        android:layout_height="280px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Title"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Description" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Location" />
+
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Date" />
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Time" />
+
+
+    <TextView
+        android:id="@+id/users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Users" />
+
+
+    <TextView
+        android:id="@+id/vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/users"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Vote" />
+
+    <TextView
+        android:id="@+id/Foodnames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vote"
+        android:layout_toRightOf="@+id/Eventimage"
+        android:text="Food Name" />
+
+
+
+</RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

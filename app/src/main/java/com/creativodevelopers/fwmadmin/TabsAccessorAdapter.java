@@ -20,7 +20,11 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
             case 0:
                 return  new ShowEventFragment();
             case 1:
-                return  new ShowInterestedUserFragment();
+                return  new myeventsfragment();
+            case 2:
+                return new user_upcoming_fragment();
+            case 3:
+                return new UserFragment();
             default:
                 return  null;
         }
@@ -30,7 +34,7 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
 
-        return 2;
+        return 4;
     }
 
 
@@ -42,7 +46,11 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
             case 0:
                 return  "Show Event";
             case 1:
-                return  "Show User";
+                return  "Show Report";
+            case 2:
+                return  "Guest User";
+            case 3:
+                return  "All User";
             default:
                 return  null;
         }
